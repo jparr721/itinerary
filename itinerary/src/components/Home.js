@@ -15,13 +15,13 @@ require("./Home.css")
 class Home extends Component {
   constructor () {
     super();
-  }
 
-  componentDidMount(){
     this.state = {
       user: null,
     };
+  }
 
+  componentDidMount(){
     this.request = new Request();
 
     firebase.auth().onAuthStateChanged((user) => {
@@ -34,7 +34,6 @@ class Home extends Component {
           this.props.history.push("/login");
       }
     });
-    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   componentWillMount() {
@@ -76,7 +75,7 @@ class Home extends Component {
                 Saved Trips
               </Typography>
               <CardContent>
-                  {this.renderTrips()}
+                  {() => this.renderTrips()}
               </CardContent>
             </Card>
           </div>

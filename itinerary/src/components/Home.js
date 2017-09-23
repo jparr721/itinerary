@@ -58,7 +58,9 @@ class Home extends Component {
               this.request.get('users/' + this.state.user.uid + '/trips').then((data) => {
                   for (let key in data.data) {
                       if (data.data.hasOwnProperty(key)) {
-                          trips.push(<SavedTrip id={key}/>)
+                          trips.push({
+                              key: key
+                          });
                       }
                   }
                   resolve (trips);
@@ -70,6 +72,17 @@ class Home extends Component {
               resolve (trips);
           }
       });
+  }
+
+  actuallyRenderTrips() {
+      console.log('i hate asdlfkj');
+      if (this.state.trips && this.state.trips.length > 0) {
+          console.log('RENDERING SHIT');
+          return this.state.trips.map((key) => <SavedTrip id={key} />);
+      } else {
+          console.log('FUCK');
+          return <span>No saved trips.</span>;
+      }
   }
 
   render() {
@@ -91,7 +104,7 @@ class Home extends Component {
                 Saved Trips
               </Typography>
               <CardContent>
-                  {() => this.state.trips}
+                  {this.actuallyRenderTrips()}
               </CardContent>
             </Card>
           </div>

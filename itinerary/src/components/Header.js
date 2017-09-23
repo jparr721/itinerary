@@ -24,7 +24,7 @@ class Header extends Component {
     };
 
     firebase.auth().onAuthStateChanged((user) => {
-      if (user != null){
+      if (user !== null){
         console.log(user);
         this.setState({
           username : user.displayName,
@@ -45,7 +45,7 @@ class Header extends Component {
 
   render () {
 
-    const isLoggedIn = this.state.username != null;
+    const isLoggedIn = this.state.username !== null;
 
     var nameAndAvatar = null;
     var logoutButton = null;

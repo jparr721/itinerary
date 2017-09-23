@@ -74,28 +74,11 @@ class Header extends Component {
     console.log("User is " + (isLoggedIn ? '' : 'not ') + "logged in")
 
     if (isLoggedIn) {
-      /*nameAndAvatar =
-        */
 
        sideNavButton =
          <IconButton onClick={() => this.toggleDrawer()}>
            <MenuIcon/>
          </IconButton>
-         /*<div>
-           <div className="avatar-container">
-             <Avatar
-               alt={this.state.username}
-               src={this.state.avatarURL}
-               className="avatar"
-             />
-           </div>
-           <p className="email">{this.state.firebaseUser.email}</p>
-         </div>*/
-
-
-         /*<IconButton onClick={() => this.toggleDrawer()}>
-           <MenuIcon/>
-         </IconButton>*/
 
        logoutButton =
         <IconButton onClick={() => this.logout()}>
@@ -105,9 +88,9 @@ class Header extends Component {
         sideNavContents =
           <div>
             <ProfileCard
-              username = {this.state.firebaseUser.displayName}
-              email = {this.state.firebaseUser.email}
-              photoURL = {this.state.firebaseUser.photoURL}
+              username={this.state.firebaseUser.displayName}
+              email={this.state.firebaseUser.email}
+              photoURL={this.state.firebaseUser.photoURL}
             />
           </div>
 

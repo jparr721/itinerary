@@ -17,9 +17,9 @@ class ProfileCard extends Component {
     };
 
     this.setState({
-      username   : props.displayName,
-      email      : props.email,
-      pictureURL : props.pictureURL,
+      username   : this.props.username,
+      email      : this.props.email,
+      pictureURL : this.props.photoURL,
     });
   }
 
@@ -29,8 +29,22 @@ class ProfileCard extends Component {
 
   render() {
     return (
-      <div className="container">
-        {this.state.username}
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-sm-4">
+            <Avatar className="avatar" src={this.props.photoURL}></Avatar>
+          </div>
+          <div className="col-sm">
+            <div className="profile-container">
+              <h3 className="primary-text">{this.props.username}</h3>
+              <h3 className="secondary-text">{this.props.email}</h3>
+            </div>
+          </div>
+        </div>
+
+        <hr class="horizontal-rule"/>
+
+
       </div>
     );
   };

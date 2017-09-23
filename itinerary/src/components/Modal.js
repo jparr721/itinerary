@@ -27,7 +27,7 @@ class Modal extends Component {
     this.state = {
       showModal: false,
       value: 'whereto',
-      activeStep: 0,
+      activeStep: 1,
       currentView: <ModalSearch />
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -36,13 +36,9 @@ class Modal extends Component {
 
   componentDidMount() {
     this.setState({
-      activeStep: 0,
+      activeStep: 0
     });
   }
-
-  handleChange = (event, value, children) => {
-    this.setState({ value, children });
-  };
 
   handleOpenModal () {
     this.setState({ showModal: true });
@@ -53,25 +49,21 @@ class Modal extends Component {
   }
 
   handleNext = () => {
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-    });
-    this.renderViews();
-    console.log(this.state.activeStep);
-
+      this.setState(prevState => ({
+        activeStep: ++prevState.activeStep
+      }));
+    this.renderViews(this.state.activeStep + 1);
   };
 
   handleBack = () => {
-    this.setState({
-      activeStep: this.state.activeStep - 1,
-    });
-    this.renderViews();
-    console.log(this.state.activeStep);
-
+      this.setState(prevState => ({
+          activeStep: --prevState.activeStep
+      }));
+    this.renderViews(this.state.activeStep - 1);
   };
 
-  renderViews() {
-    switch(this.state.activeStep) {
+  renderViews(current_step) {
+    switch(current_step) {
       case 0:
         this.setState({ currentView: <ModalSearch /> });
         break;
@@ -89,29 +81,7 @@ class Modal extends Component {
     }
   }
 
-  renderSearch() {
-    // console.log(this.state.activeStep);
-    // if (this.state.activeStep === 0)
-      return <ModalSearch />
-  }
-  renderStay() {
-    // if (this.state.activeStep === 1)
-      return <ModalStay />
-  }
-  renderTravel() {
-    // if (this.state.activeStep === 2)
-      return <ModalTravel />
-  }
-  renderTotal() {
-    // if (this.state.activeStep === 3)
-      return <ModalTotal />
-  }
-
-
-
-
   render() {
-    const { value, activeStep } = this.state;
     return (
       <div className="container">
         <Tooltip placement="top" title="Start your new adventure!">

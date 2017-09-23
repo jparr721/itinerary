@@ -4,13 +4,23 @@ import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 
 class Home extends Component {
-  state = {
-    placement: 'bottom',
-  };
+  constructor () {
+    super();
+    this.state = {
+      showModal: false
+    };
 
-  handlePlacementChange = (event, placement) => {
-    this.setState({ placement });
-  };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
 
   render() {
     return (
@@ -31,7 +41,7 @@ class Home extends Component {
             <div className="col-4"></div>
             <div className="col-4"></div>
           <div className="col-4 text-right button-holder">
-              <Button fab color="primary" aria-label="add">
+              <Button fab color="primary" aria-label="add" onClick={this.handleOpenModal}>
                 <AddIcon />
               </Button>
             </div>

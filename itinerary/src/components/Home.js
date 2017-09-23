@@ -14,6 +14,9 @@ require("./Home.css")
 class Home extends Component {
   constructor () {
     super();
+  }
+
+  componentDidMount(){
     this.state = {
       user: null,
     };

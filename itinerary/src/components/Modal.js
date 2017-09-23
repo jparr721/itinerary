@@ -4,6 +4,8 @@ import ReactModal from 'react-modal';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import Tooltip from 'material-ui/Tooltip';
+import IconButton from 'material-ui/IconButton';
+import Backspace from 'material-ui-icons/Backspace';
 
 class Modal extends Component {
   constructor () {
@@ -33,7 +35,9 @@ class Modal extends Component {
         </Tooltip>
         <ReactModal
           isOpen={this.state.showModal}>
-
+          <IconButton color="primary" aria-label="Add to shopping cart" onClick={this.handleCloseModal}>
+            <Backspace />
+          </IconButton>
         </ReactModal>
       </div>
     );

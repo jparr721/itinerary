@@ -75,12 +75,9 @@ class Home extends Component {
   }
 
   actuallyRenderTrips() {
-      console.log('i hate asdlfkj');
       if (this.state.trips && this.state.trips.length > 0) {
-          console.log('RENDERING SHIT');
           return this.state.trips.map((key) => <SavedTrip id={key} />);
       } else {
-          console.log('FUCK');
           return <span>No saved trips.</span>;
       }
   }

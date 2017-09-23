@@ -4,7 +4,10 @@ import Modal from './Modal';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import firebase from 'firebase';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 
+require("./Home.css")
 
 class Home extends Component {
   constructor () {
@@ -39,16 +42,34 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <div className="row main text-center">
-          <div className="col-4">
-            <h2>Upcoming Trips</h2>
+      <div className="container-fluid">
+        <div className="row main">
+          <div className="col-md-4">
+            <Card className="main-card">
+              <Typography type="title" className="title">
+                Upcoming Trips
+              </Typography>
+              <CardContent>
+              </CardContent>
+            </Card>
           </div>
-          <div className="col-4">
-            <h2>Saved Trips</h2>
+          <div className="col-md-4">
+            <Card className="main-card">
+              <Typography type="title" className="title">
+                Saved Trips
+              </Typography>
+              <CardContent>
+              </CardContent>
+            </Card>
           </div>
-          <div className="col-4">
-            <h2>Deals in your area</h2>
+          <div className="col-md-4">
+            <Card className="main-card">
+              <Typography type="title" className="title">
+                Deals in your area
+              </Typography>
+              <CardContent>
+              </CardContent>
+            </Card>
           </div>
         </div>
         <footer>

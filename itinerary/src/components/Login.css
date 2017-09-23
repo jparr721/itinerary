@@ -27,6 +27,12 @@
   padding-left: 15px;
   padding-right: 15px;
   width: 80vw;
+  -webkit-animation-duration: 1.25s;
+  -webkit-animation-delay: 0.25s;
+  -moz-animation-duration: 1.25s;
+  -moz-animation-delay: 0.25s;
+  animation-duration: 1.25s;
+  animation-delay: 0.25s;
 }
 
 .overlay {

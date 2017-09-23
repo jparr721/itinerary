@@ -96,7 +96,7 @@ class Login extends Component {
     return (
       <div className="wrapper">
         <div className="title-container center">
-          <Card className="overlay login-card">
+          <Card className="overlay login-card animated fadeIn">
             <CardContent>
               <div className="title center">
                 Login or Register
@@ -110,7 +110,7 @@ class Login extends Component {
               </div>
             </CardContent>
           </Card>
-          <img src={background} className="background-img fadeIn" alt="logo" />
+          <img src={background} className="background-img" alt="logo" />
         </div>
       </div>
     );

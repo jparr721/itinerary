@@ -3,6 +3,9 @@ import ReactModal from 'react-modal';
 
 // Pages
 import ModalSearch from './ModalSearch';
+import ModalStay from './ModalSearch';
+import ModalTravel from './ModalTravel';
+import ModalTotal from './ModalTotal';
 
 // Material UI
 import Button from 'material-ui/Button';
@@ -60,6 +63,21 @@ class Modal extends Component {
     if (this.state.activeStep === 0)
       return <ModalSearch />
   }
+  renderStay() {
+    if (this.state.activeStep === 1)
+      return <ModalStay />
+  }
+  renderTravel() {
+    if (this.state.activeStep === 2)
+      return <ModalTravel />
+  }
+  renderTotal() {
+    if (this.state.activeStep === 3)
+      return <ModalTotal />
+  }
+
+
+
 
   render() {
     const { value, activeStep } = this.state;
@@ -76,9 +94,12 @@ class Modal extends Component {
             <NavigateBefore />
           </IconButton>
           {this.renderSearch()}
+          {this.renderStay()}
+          {this.renderTravel()}
+          {this.renderTotal()}
           <MobileStepper
             type="dots"
-            steps={6}
+            steps={4}
             position="static"
             activeStep={this.state.activeStep}
             className="stepper"

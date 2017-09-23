@@ -8,14 +8,16 @@ class ModalSearch extends Component {
     return (
       <div className="modal-search">
         <h1>Where would you like to go?</h1>
-        <TextField
-            id="full-width"
-            label="Search!"
-            InputProps={{ placeholder: 'Paris, France' }}
-            helperText="Vacation in your dream spot"
-            fullWidth
-            margin="normal"
-          />
+        <form noValidate autoComplete="off">
+          <TextField
+              id="full-width"
+              label="Search!"
+              InputProps={{ placeholder: 'Paris, France' }}
+              helperText="Vacation in your dream spot"
+              fullWidth
+              margin="normal"
+            />
+          </form>
         <iframe className="map"
           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDpZF4UlkJ1bIvg5sG29oyxWfR20fODMDI
             &q=Space+Needle,Seattle+WA" allowfullscreen>

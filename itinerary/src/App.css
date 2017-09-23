@@ -41,6 +41,15 @@ footer {
   padding-right: 25px;
 
 }
+
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: papayawhip;
+}
 /** Header Component **/
 .header {
   width: 100%;
@@ -48,7 +57,8 @@ footer {
 
 .username {
   padding-left:15px;
-  padding-top: 25px;
-  font-size: 25px;
+  padding-top: 30px;
+  font-weight: 400;
+  font-size: 18px;
 }
 /** End Header Component **/

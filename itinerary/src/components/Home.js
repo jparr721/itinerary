@@ -10,7 +10,7 @@ import SavedTrip from './SavedTrip';
 import NearbyDeals from './NearbyDeals';
 import Request from '../util/request';
 
-require("./Home.css")
+require("./Home.css");
 
 class Home extends Component {
   constructor () {
@@ -31,7 +31,7 @@ class Home extends Component {
           this.props.history.push("/login");
       }
     });
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+    // this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   componentWillMount() {
@@ -43,15 +43,22 @@ class Home extends Component {
   }
 
   renderTrips() {
-    let trips = [];
-    if (this.state.user !== null) {
-        this.request.get('users/' + this.state.user.uid + '/trips').then((data) => {
-            return trips;
-        }, (err) => {
-            console.log(err);
-            return (trips);
-        });
-    }
+      let trips = [];
+      if (this.state.user !== null) {
+          this.request.get('users/' + this.state.user.uid + '/trips').then((data) => {
+              for (let key in data.data) {
+                  if (data.data.hasOwnProperty(key)) {
+                      trips.push(<SavedTrip id={key}/>)
+                  }
+              }
+              return (trips);
+          }, (err) => {
+              console.log(err);
+              return (trips);
+          });
+      } else {
+          return (trips);
+      }
   }
 
   render() {

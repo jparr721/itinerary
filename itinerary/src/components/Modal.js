@@ -13,6 +13,8 @@ import NavigateBefore from 'material-ui-icons/NavigateBefore';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 import AddLocationIcon from 'material-ui-icons/AddLocation';
 
+require('./Modal.css')
+
 class Modal extends Component {
   constructor () {
     super();
@@ -43,7 +45,7 @@ class Modal extends Component {
     return (
       <div>
         <Tooltip placement="top" title="Start your new adventure!">
-          <Button fab color="primary" aria-label="add" onClick={this.handleOpenModal}>
+          <Button fab color="primary" className="fabulous" aria-label="add" onClick={this.handleOpenModal}>
             <AddIcon />
           </Button>
         </Tooltip>

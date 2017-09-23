@@ -17,7 +17,8 @@ class Home extends Component {
     super();
 
     this.state = {
-      user: null,
+        user: null,
+        trips: null
     };
   }
 
@@ -27,8 +28,18 @@ class Home extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null){
         this.setState({
-          user : user
+            user : user,
+            trips: null
         });
+
+          this.renderTrips().then((trips) => {
+              console.log(trips);
+              this.setState({
+                  trips: trips
+              });
+          }, (err) => {
+              console.log(err);
+          });
 
       } else {
           this.props.history.push("/login");
@@ -36,30 +47,41 @@ class Home extends Component {
     });
   }
 
-  componentWillMount() {
-      this.renderTrips();
-  }
-
   handleOpenModal () {
     this.setState({ showModal: true });
   }
 
   renderTrips() {
-      let trips = [];
-      if (this.state.user !== null) {
-          this.request.get('users/' + this.state.user.uid + '/trips').then((data) => {
-              for (let key in data.data) {
-                  if (data.data.hasOwnProperty(key)) {
-                      trips.push(<SavedTrip id={key}/>)
+      return new Promise((resolve) => {
+          let trips = [];
+          if (this.state.user !== null) {
+              this.request.get('users/' + this.state.user.uid + '/trips').then((data) => {
+                  for (let key in data.data) {
+                      if (data.data.hasOwnProperty(key)) {
+                          trips.push({
+                              key: key
+                          });
+                      }
                   }
-              }
-              return (trips);
-          }, (err) => {
-              console.log(err);
-              return (trips);
-          });
+                  resolve (trips);
+              }, (err) => {
+                  console.log(err);
+                  resolve (trips);
+              });
+          } else {
+              resolve (trips);
+          }
+      });
+  }
+
+  actuallyRenderTrips() {
+      console.log('i hate asdlfkj');
+      if (this.state.trips && this.state.trips.length > 0) {
+          console.log('RENDERING SHIT');
+          return this.state.trips.map((key) => <SavedTrip id={key} />);
       } else {
-          return (trips);
+          console.log('FUCK');
+          return <span>No saved trips.</span>;
       }
   }
 
@@ -82,7 +104,7 @@ class Home extends Component {
                 Saved Trips
               </Typography>
               <CardContent>
-                  {() => this.renderTrips()}
+                  {this.actuallyRenderTrips()}
               </CardContent>
             </Card>
           </div>

@@ -13,8 +13,8 @@ import PropTypes from 'prop-types';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
-
 import MenuIcon from 'material-ui-icons/Menu';
+import ProfileCard from './ProfileCard'
 
 require("./Header.css");
 
@@ -31,7 +31,7 @@ class Header extends Component {
     };
 
     firebase.auth().onAuthStateChanged((user) => {
-      if (user != null){
+      if (user !== null){
         console.log(user);
         this.setState({
           firebaseUser : user,
@@ -45,6 +45,10 @@ class Header extends Component {
         });
       }
     });
+  }
+
+  componentDidMount(){
+
   }
 
   logout() {
@@ -61,11 +65,13 @@ class Header extends Component {
 
   render () {
 
-    const isLoggedIn = this.state.username != null;
+    const isLoggedIn = this.state.username !== null;
 
     var sideNavButton = null;
     var logoutButton = null;
     var sideNavContents = null;
+
+    console.log("User is " + (isLoggedIn ? '' : 'not ') + "logged in")
 
     if (isLoggedIn) {
       /*nameAndAvatar =
@@ -75,6 +81,21 @@ class Header extends Component {
          <IconButton onClick={() => this.toggleDrawer()}>
            <MenuIcon/>
          </IconButton>
+         /*<div>
+           <div className="avatar-container">
+             <Avatar
+               alt={this.state.username}
+               src={this.state.avatarURL}
+               className="avatar"
+             />
+           </div>
+           <p className="email">{this.state.firebaseUser.email}</p>
+         </div>*/
+
+
+         /*<IconButton onClick={() => this.toggleDrawer()}>
+           <MenuIcon/>
+         </IconButton>*/
 
        logoutButton =
         <IconButton onClick={() => this.logout()}>
@@ -82,16 +103,14 @@ class Header extends Component {
         </IconButton>
 
         sideNavContents =
-        <div>
-          <div className="avatar-container">
-            <Avatar
-              alt={this.state.username}
-              src={this.state.avatarURL}
-              className="avatar"
+          <div>
+            <ProfileCard
+              username = {this.state.firebaseUser.displayName}
+              email = {this.state.firebaseUser.email}
+              photoURL = {this.state.firebaseUser.photoURL}
             />
           </div>
-          <p className="username">{this.state.firebaseUser.email}</p>
-        </div>
+
     }
 
     return (

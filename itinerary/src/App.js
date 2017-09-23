@@ -27,8 +27,8 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
-            <Header />
-            <Routes />
+          <Header />
+          <Routes />
         </div>
       </MuiThemeProvider>
     );

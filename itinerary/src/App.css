@@ -1,5 +1,5 @@
 /** Main View CSS **/
-body {
+html, body {
   position: relative;
 }
 
@@ -19,9 +19,10 @@ h2 {
 }
 
 footer {
-  height: 100px;
-  width: 100%;
-  overflow:hidden;
+  width: 30%;
+  position: fixed;
+  bottom: 16px;
+  right: 50px;
 }
 
 .absolute {
@@ -32,7 +33,7 @@ footer {
 }
 
 .main {
-  height: 82.5vh;
+  /*height: 82.5vh;*/
 }
 
 .button-holder {

@@ -35,6 +35,7 @@ class Login extends Component {
   createUser(user) {
     this.request.get('users/' + user.uid + "/exists").then((data) => {
       let exists = data.data.exists;
+      console.log('user existence is ' + exists);
       if (!exists) {
         this.request.post('users/create', {
           id: user.uid,

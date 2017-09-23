@@ -2,7 +2,7 @@
 .wrapper {
   overflow-y: hidden ! important;
   overflow-x: hidden ! important;
-  width: 100vw ! important;
+  /*width: 100vw ! important;*/
   height: 100vh ! important;
 }
 

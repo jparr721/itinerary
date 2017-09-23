@@ -1,12 +1,13 @@
 .pad-thai {
   margin: auto;
   padding-right: 30px;
+  padding-left: 30px;
   float: right;
   text-align: right;
 }
 
 .username {
-  margin-left: 30px;
+  margin: 10px;
 }
 
 .avatar {
@@ -14,8 +15,8 @@
   margin: 0;
   margin: 10px;
   text-align: center;
-  width: 60;
-  height: 60;
+  width: 90px !important;
+  height: 90px !important;
 }
 
 .avatar-container {

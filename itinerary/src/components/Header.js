@@ -31,7 +31,7 @@ class Header extends Component {
     };
 
     firebase.auth().onAuthStateChanged((user) => {
-      if (user != null){
+      if (user !== null){
         console.log(user);
         this.setState({
           firebaseUser : user,
@@ -65,7 +65,7 @@ class Header extends Component {
 
   render () {
 
-    const isLoggedIn = this.state.username != null;
+    const isLoggedIn = this.state.username !== null;
 
     var sideNavButton = null;
     var logoutButton = null;

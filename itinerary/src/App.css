@@ -1,6 +1,7 @@
 /** Main View CSS **/
 html, body {
   position: relative;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -51,6 +52,13 @@ footer {
   bottom: 40px;
   background-color: papayawhip;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /** Header Component **/
 .header {
   width: 100%;

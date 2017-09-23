@@ -70,7 +70,7 @@ class Header extends Component {
           <div className="col-4 text-left">
             {nameAndAvatar}
           </div>
-          <div className="col-4 text-center">
+          <div className="col-4 center">
             <h1>Itinerary</h1>
           </div>
           <div className="col-4 pad-thai">

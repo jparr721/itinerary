@@ -27,3 +27,7 @@
 .no-outline {
   outline: none
 }
+
+.header, header {
+  height: 10vh !important;
+}

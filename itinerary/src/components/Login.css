@@ -2,8 +2,7 @@
 .wrapper {
   overflow-y: hidden ! important;
   overflow-x: hidden ! important;
-  /*width: 100vw ! important;*/
-  height: 100vh ! important;
+  height: 90vh;
 }
 
 .background-img {
@@ -12,6 +11,7 @@
   background-position: center center;
   filter: grayscale(100%) blur(1px);
   width: 100%;
+  height: 100%;
   z-index: -999;
 }
 
@@ -37,6 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .title {

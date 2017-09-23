@@ -24,8 +24,6 @@ class Login extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
 
-      firebase.auth().signOut();
-
       if (user != null){
         this.props.history.push("/home");
       }

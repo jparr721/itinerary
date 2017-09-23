@@ -25,7 +25,7 @@ class Login extends Component {
     firebase.auth().onAuthStateChanged((user) => {
 
       if (user != null){
-        this.props.history.push("/home");
+        this.props.history.push("/");
       }
     });
   }

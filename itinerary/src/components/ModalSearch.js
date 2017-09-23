@@ -18,10 +18,10 @@ class ModalSearch extends Component {
               margin="normal"
             />
           </form>
-        <iframe className="map"
+        {/* <iframe className="map"
           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDpZF4UlkJ1bIvg5sG29oyxWfR20fODMDI
-            &q=Space+Needle,Seattle+WA" allowfullscreen>
-        </iframe>
+            &q=Space+Needle,Seattle+WA" allowFullScreen>
+        </iframe> */}
       </div>
     );
   };

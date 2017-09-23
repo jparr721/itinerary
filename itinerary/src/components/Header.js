@@ -48,6 +48,7 @@ class Header extends Component {
     const isLoggedIn = this.state.username != null;
 
     var nameAndAvatar = null;
+    var logoutButton = null;
 
     if (isLoggedIn) {
       nameAndAvatar =
@@ -61,6 +62,11 @@ class Header extends Component {
           </div>
           <p className="username">Hi, {this.state.username}</p>
         </div>
+
+       logoutButton =
+        <IconButton onClick={() => this.logout()}>
+          <ExitToApp/>
+        </IconButton>
     }
 
     return (
@@ -74,9 +80,7 @@ class Header extends Component {
             <h1>Itinerary</h1>
           </div>
           <div className="col-4 pad-thai">
-            <IconButton onClick={() => this.logout()}>
-              <ExitToApp/>
-            </IconButton>
+            {logoutButton}
           </div>
         </div>
       </AppBar>

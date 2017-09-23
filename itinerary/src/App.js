@@ -31,7 +31,20 @@ class App extends Component {
       messagingSenderId: "765300072671"
     };
     firebase.initializeApp(config);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
   }
+
+  renderAuth() {
+    
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>

@@ -1,5 +1,53 @@
+/** Main View CSS **/
+body {
+  position: relative;
+}
+
+h1 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #424242;
+  font-size: 46px;
+}
+
+h2 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #424242;
+  font-size: 34px;
+}
+
+footer {
+  height: 100px;
+  width: 100%;
+  overflow:hidden;
+}
+
+.absolute {
+  position: absolute;
+  top: 90%;
+  bottom: 32;
+  right: 32;
+}
+
+.main {
+  height: 82.5vh;
+}
+
+.button-holder {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 25px;
+
+}
 /** Header Component **/
-header {
-  
+.header {
+  width: 100%;
+}
+
+.username {
+  padding-left:15px;
+  padding-top: 25px;
+  font-size: 25px;
 }
 /** End Header Component **/

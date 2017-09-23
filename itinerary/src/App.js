@@ -3,13 +3,22 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import amber from 'material-ui/colors/amber';
 import grey from 'material-ui/colors/grey';
 import firebase from 'firebase';
-import logo from './logo.svg';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'typeface-roboto';
 import './App.css';
 
 // Page imports
 import Login from './components/Login';
 import Header from './components/Header';
 import Routes from './components/Routes';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: amber,
+    secondary: grey,
+  },
+});
 
 class App extends Component {
   componentWillMount() {
@@ -25,10 +34,10 @@ class App extends Component {
   }
   render() {
     return (
-      <MuiThemeProvider>
-        <div>
-            <Header />
-            <Routes />
+      <MuiThemeProvider theme={theme}>
+        <div className="container-fluid main">
+          <Header />
+          <Routes />
         </div>
       </MuiThemeProvider>
     );

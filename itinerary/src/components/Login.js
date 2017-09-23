@@ -95,8 +95,8 @@ class Login extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="title-container">
-          <Card className="overlay login-card col-lg-4">
+        <div className="title-container center">
+          <Card className="overlay login-card">
             <CardContent>
               <div className="title center">
                 Login or Register
@@ -106,7 +106,7 @@ class Login extends Component {
               <GoogleLoginButton text="Google" onClick={() => this.loginGoogle()} />
               <TwitterLoginButton text="Twitter" onClick={() => this.loginTwitter()} />
               <div className="error">
-                {this.error}
+                  {this.error}
               </div>
             </CardContent>
           </Card>

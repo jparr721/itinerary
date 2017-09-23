@@ -1,15 +1,86 @@
 import React, { Component } from 'react';
 import './Login.css';
 import background from './splash.jpg'
+import Button from 'material-ui/Button';
 
-class Home extends Component {
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
+import firebase from 'firebase';
+
+import FacebookLoginButton from 'react-social-login-buttons/lib/buttons/FacebookLoginButton';
+import GoogleLoginButton from 'react-social-login-buttons/lib/buttons/GoogleLoginButton';
+import TwitterLoginButton from 'react-social-login-buttons/lib/buttons/TwitterLoginButton';
+
+class Login extends Component {
+
+  constructor(props){
+    super(props);
+    this.loginCommon = this.loginCommon.bind(this);
+    this.loginGoogle = this.loginGoogle.bind(this);
+    this.loginFacebook = this.loginFacebook.bind(this);
+    this.loginTwitter = this.loginTwitter.bind(this);
+
+  }
+
+  loginCommon(provider){
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  }
+
+  loginFacebook(){
+    var provider = new firebase.auth.FacebookAuthProvider();
+    this.loginCommon(provider);
+  }
+
+  loginTwitter(){
+    var provider = new firebase.auth.TwitterAuthProvider();
+    this.loginCommon(provider);
+  }
+
+  loginGoogle(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    this.loginCommon(provider);
+  }
+
   render() {
     return (
-      <div>
+      <div className="wrapper">
+        <div className="title-container">
+
+          <Card className="overlay login-card col-lg-4">
+            <CardContent>
+              <div className="title center">
+                Login or Register
+              </div>
+              <br/>
+              <FacebookLoginButton text="Facebook" onClick={this.loginFacebook} />
+              <GoogleLoginButton text="Google" onClick={this.loginGoogle} />
+              <TwitterLoginButton text="Twitter" onClick={this.loginTwitter} />
+
+            </CardContent>
+
+
+
+        </Card>
         <img src={background} className="background-img fadeIn" alt="logo" />
+        </div>
       </div>
     );
   }
 }
 
-export default Home;
+export default Login;

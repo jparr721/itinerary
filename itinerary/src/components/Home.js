@@ -7,6 +7,8 @@ import firebase from 'firebase';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
+import NearbyDeals from './NearbyDeals';
+
 require("./Home.css")
 
 class Home extends Component {
@@ -63,13 +65,7 @@ class Home extends Component {
             </Card>
           </div>
           <div className="col-md-4">
-            <Card className="main-card">
-              <Typography type="title" className="title">
-                Deals in your area
-              </Typography>
-              <CardContent>
-              </CardContent>
-            </Card>
+            <NearbyDeals/>
           </div>
         </div>
         <footer>

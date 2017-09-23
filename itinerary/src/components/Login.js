@@ -15,16 +15,21 @@ class Login extends Component {
 
   constructor(props){
     super(props);
-    /*this.loginCommon = this.loginCommon.bind(this);
-    this.loginGoogle = this.loginGoogle.bind(this);
-    this.loginFacebook = this.loginFacebook.bind(this);
-    this.loginTwitter = this.loginTwitter.bind(this);*/
 
     this.state = {
       error: ""
     };
 
     this.error = "";
+
+    firebase.auth().onAuthStateChanged((user) => {
+
+      firebase.auth().signOut();
+
+      if (user != null){
+        this.props.history.push("/home");
+      }
+    });
   }
 
   loginCommon = (provider) => {
@@ -34,6 +39,9 @@ class Login extends Component {
       // The signed-in user info.
       var user = result.user;
       // ...
+
+      this.props.history.pop();
+
 
     }).catch((error) => {
       // Handle Errors here.

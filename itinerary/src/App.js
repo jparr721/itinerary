@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import amber from 'material-ui/colors/amber';
+import grey from 'material-ui/colors/grey';
 import firebase from 'firebase';
 import logo from './logo.svg';
 import './App.css';
 
+// Page imports
 import Login from './components/Login';
+import Header from './components/Header';
+import Routes from './components/Routes';
 
 class App extends Component {
   componentWillMount() {
@@ -19,10 +25,12 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <Login>
-        </Login>
-      </div>
+      <MuiThemeProvider>
+        <div>
+            <Header />
+            <Routes />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

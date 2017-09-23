@@ -6,8 +6,10 @@
   text-align: right;
 }
 
-.username {
-  margin: 10px;
+.email {
+  margin: 20px;
+  font-weight: 400;
+  font-size: 20px;
 }
 
 .avatar {

@@ -46,6 +46,7 @@ class Modal extends Component {
     this.setState({
       activeStep: this.state.activeStep + 1,
     });
+    this.renderSearch();
   };
 
   handleBack = () => {
@@ -55,7 +56,8 @@ class Modal extends Component {
   };
 
   renderSearch() {
-    if (this.state.activeStep === 1)
+    console.log(this.state.activeStep);
+    if (this.state.activeStep === 0)
       return <ModalSearch />
   }
 
@@ -64,30 +66,30 @@ class Modal extends Component {
     return (
       <div className="container">
         <Tooltip placement="top" title="Start your new adventure!">
-          <Button fab color="primary" className="fabulous" aria-label="add" onClick={this.handleOpenModal}>
+          <Button fab color="primary" className="fabulous" aria-label="add" onClick={() => this.handleOpenModal()}>
             <AddIcon />
           </Button>
         </Tooltip>
         <ReactModal
           isOpen={this.state.showModal}>
-          <IconButton color="primary" aria-label="Add to shopping cart" onClick={this.handleCloseModal}>
+          <IconButton color="primary" aria-label="Add to shopping cart" onClick={() => this.handleCloseModal()}>
             <NavigateBefore />
           </IconButton>
-          {this.renderSearch}
+          {this.renderSearch()}
           <MobileStepper
             type="dots"
             steps={6}
             position="static"
             activeStep={this.state.activeStep}
-            className=""
+            className="stepper"
             nextButton={
-              <Button dense onClick={this.handleNext} disabled={this.state.activeStep === 5}>
+              <Button dense onClick={() => this.handleNext()} disabled={this.state.activeStep === 5}>
                 Next
                 <KeyboardArrowRight />
               </Button>
             }
             backButton={
-              <Button dense onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+              <Button dense onClick={() => this.handleBack()} disabled={this.state.activeStep === 0}>
                 <KeyboardArrowLeft />
                 Back
               </Button>

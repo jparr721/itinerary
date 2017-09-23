@@ -9,6 +9,7 @@ class ModalSearch extends Component {
       <div className="modal-search">
         <h1>Where would you like to go?</h1>
         <form noValidate autoComplete="off">
+          <h3>
           <TextField
               id="full-width"
               label="Search!"
@@ -17,11 +18,12 @@ class ModalSearch extends Component {
               fullWidth
               margin="normal"
             />
-          </form>
-        {/* <iframe className="map"
+          </h3>
+        </form>
+        <iframe className="map"
           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDpZF4UlkJ1bIvg5sG29oyxWfR20fODMDI
             &q=Space+Needle,Seattle+WA" allowFullScreen>
-        </iframe> */}
+        </iframe>
       </div>
     );
   };

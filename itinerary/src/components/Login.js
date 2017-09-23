@@ -21,8 +21,6 @@ class Login extends Component {
       error: ""
     };
 
-    this.error = "";
-
     this.request = new Request();
 
     firebase.auth().onAuthStateChanged((user) => {

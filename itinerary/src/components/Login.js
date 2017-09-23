@@ -15,21 +15,27 @@ class Login extends Component {
 
   constructor(props){
     super(props);
-    this.loginCommon = this.loginCommon.bind(this);
+    /*this.loginCommon = this.loginCommon.bind(this);
     this.loginGoogle = this.loginGoogle.bind(this);
     this.loginFacebook = this.loginFacebook.bind(this);
-    this.loginTwitter = this.loginTwitter.bind(this);
+    this.loginTwitter = this.loginTwitter.bind(this);*/
 
+    this.state = {
+      error: ""
+    };
+
+    this.error = "";
   }
 
-  loginCommon(provider){
-    firebase.auth().signInWithPopup(provider).then(function(result) {
+  loginCommon = (provider) => {
+    firebase.auth().signInWithPopup(provider).then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
       // ...
-    }).catch(function(error) {
+
+    }).catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -38,6 +44,8 @@ class Login extends Component {
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
+      //
+      this.error = errorCode + " : " + errorMessage;
     });
   }
 
@@ -60,23 +68,21 @@ class Login extends Component {
     return (
       <div className="wrapper">
         <div className="title-container">
-
           <Card className="overlay login-card col-lg-4">
             <CardContent>
               <div className="title center">
                 Login or Register
               </div>
               <br/>
-              <FacebookLoginButton text="Facebook" onClick={this.loginFacebook} />
-              <GoogleLoginButton text="Google" onClick={this.loginGoogle} />
-              <TwitterLoginButton text="Twitter" onClick={this.loginTwitter} />
-
+              <FacebookLoginButton text="Facebook" onClick={() => this.loginFacebook()} />
+              <GoogleLoginButton text="Google" onClick={() => this.loginGoogle()} />
+              <TwitterLoginButton text="Twitter" onClick={() => this.loginTwitter()} />
+              <div className="error">
+                {this.error}
+              </div>
             </CardContent>
-
-
-
-        </Card>
-        <img src={background} className="background-img fadeIn" alt="logo" />
+          </Card>
+          <img src={background} className="background-img fadeIn" alt="logo" />
         </div>
       </div>
     );

@@ -2,14 +2,14 @@
 .wrapper {
   overflow-y: hidden ! important;
   overflow-x: hidden ! important;
-  width: 100vw ! important;
+  /*width: 100vw ! important;*/
   height: 100vh ! important;
 }
 
 .background-img {
-  background-size:     cover;                      /* <------ */
+  background-size:     cover;
   background-repeat:   no-repeat;
-  background-position: center center;              /* optional, center the image */
+  background-position: center center;
   filter: grayscale(100%) blur(1px);
   width: 100%;
   z-index: -999;
@@ -45,4 +45,10 @@
   color: black;
   margin: 0 auto;
   z-index: 999;
+}
+
+.error {
+  padding: 5px;
+  color: red;
+  font-style: italic;
 }

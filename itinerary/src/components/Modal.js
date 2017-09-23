@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 
 // Pages
 import ModalSearch from './ModalSearch';
-import ModalStay from './ModalSearch';
+import ModalStay from './ModalStay';
 import ModalTravel from './ModalTravel';
 import ModalTotal from './ModalTotal';
 
@@ -28,9 +28,16 @@ class Modal extends Component {
       showModal: false,
       value: 'whereto',
       activeStep: 0,
+      currentView: <ModalSearch />
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      activeStep: 0,
+    });
   }
 
   handleChange = (event, value, children) => {
@@ -49,30 +56,54 @@ class Modal extends Component {
     this.setState({
       activeStep: this.state.activeStep + 1,
     });
-    this.renderSearch();
+    this.renderViews();
+    console.log(this.state.activeStep);
+
   };
 
   handleBack = () => {
     this.setState({
       activeStep: this.state.activeStep - 1,
     });
+    this.renderViews();
+    console.log(this.state.activeStep);
+
   };
 
+  renderViews() {
+    switch(this.state.activeStep) {
+      case 0:
+        this.setState({ currentView: <ModalSearch /> });
+        break;
+      case 1:
+        this.setState({ currentView: <ModalStay /> });
+        break;
+      case 2:
+        this.setState({ currentView: <ModalTravel /> });
+        break;
+      case 3:
+        this.setState({ currentView: <ModalTotal /> });
+        break;
+      default:
+        break;
+    }
+  }
+
   renderSearch() {
-    console.log(this.state.activeStep);
-    if (this.state.activeStep === 0)
+    // console.log(this.state.activeStep);
+    // if (this.state.activeStep === 0)
       return <ModalSearch />
   }
   renderStay() {
-    if (this.state.activeStep === 1)
+    // if (this.state.activeStep === 1)
       return <ModalStay />
   }
   renderTravel() {
-    if (this.state.activeStep === 2)
+    // if (this.state.activeStep === 2)
       return <ModalTravel />
   }
   renderTotal() {
-    if (this.state.activeStep === 3)
+    // if (this.state.activeStep === 3)
       return <ModalTotal />
   }
 
@@ -93,10 +124,8 @@ class Modal extends Component {
           <IconButton color="primary" aria-label="Add to shopping cart" onClick={() => this.handleCloseModal()}>
             <NavigateBefore />
           </IconButton>
-          {this.renderSearch()}
-          {this.renderStay()}
-          {this.renderTravel()}
-          {this.renderTotal()}
+          {this.state.currentView}
+
           <MobileStepper
             type="dots"
             steps={4}
@@ -104,13 +133,13 @@ class Modal extends Component {
             activeStep={this.state.activeStep}
             className="stepper"
             nextButton={
-              <Button dense onClick={() => this.handleNext()} disabled={this.state.activeStep === 5}>
+              <Button dense onClick={() => this.handleNext()} disabled={this.state.activeStep === 3}>
                 Next
                 <KeyboardArrowRight />
               </Button>
             }
             backButton={
-              <Button dense onClick={() => this.handleBack()} disabled={this.state.activeStep === 0}>
+              <Button dense onClick={() => this.handleBack()} disabled={this.state.activeStep <= 0}>
                 <KeyboardArrowLeft />
                 Back
               </Button>

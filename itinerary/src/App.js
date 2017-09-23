@@ -42,13 +42,13 @@ class App extends Component {
   }
 
   renderAuth() {
-    
+
   }
 
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="container-fluid main">
+        <div className="main">
           <Header />
           <Routes />
         </div>

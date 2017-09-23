@@ -1,0 +1,10 @@
+.pad-thai {
+  margin: auto;
+  padding-right: 30px;
+  float: right;
+  text-align: right;
+}
+
+.no-outline {
+  outline: none
+}

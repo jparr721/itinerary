@@ -59,7 +59,7 @@ class Home extends Component {
                   for (let key in data.data) {
                       if (data.data.hasOwnProperty(key)) {
                           trips.push({
-                              key: key
+                              trip: data.data[key]
                           });
                       }
                   }
@@ -76,7 +76,15 @@ class Home extends Component {
 
   actuallyRenderTrips() {
       if (this.state.trips && this.state.trips.length > 0) {
-          return this.state.trips.map((key) => <SavedTrip id={key} />);
+          console.log(this.state.trips);
+          return this.state.trips.map((key, index) => (
+              <Card className="main-card col-12">
+                  <CardContent>
+                      <SavedTrip data={this.state.trips[index].trip}/>
+                  </CardContent>
+              </Card>
+          ));
+
       } else {
           return <span>No saved trips.</span>;
       }
@@ -96,14 +104,14 @@ class Home extends Component {
             </Card>
           </div>
           <div className="col-md-4">
-            <Card className="main-card">
-              <Typography type="title" className="title">
-                Saved Trips
-              </Typography>
-              <CardContent>
-                  {this.actuallyRenderTrips()}
-              </CardContent>
-            </Card>
+            <div className="row">
+                <Card className="main-card col-12">
+                    <Typography type="title" className="title">
+                        Saved Trips
+                    </Typography>
+                </Card>
+                {this.actuallyRenderTrips()}
+            </div>
           </div>
           <div className="col-md-4">
             <NearbyDeals/>

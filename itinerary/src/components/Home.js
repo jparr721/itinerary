@@ -33,7 +33,6 @@ class Home extends Component {
         });
 
           this.renderTrips().then((trips) => {
-              console.log(trips);
               this.setState({
                   trips: trips
               });
@@ -76,7 +75,6 @@ class Home extends Component {
 
   actuallyRenderTrips() {
       if (this.state.trips && this.state.trips.length > 0) {
-          console.log(this.state.trips);
           return this.state.trips.map((key, index) => (
               <Card className="main-card col-12">
                   <CardContent>
@@ -86,32 +84,56 @@ class Home extends Component {
           ));
 
       } else {
-          return <span>No saved trips.</span>;
+          return <Card className="main-card col-12">
+              <CardContent>
+                  <span>No saved trips.</span>
+              </CardContent>
+          </Card>;
       }
   }
+
+  renderUpcomingTrips() {
+      if (this.state.trips && this.state.trips.length > 0) {
+          let trips = [];
+          this.state.trips.map((key, index) => {
+              let cur_trip = this.state.trips[index].trip;
+              let today = new Date();
+              let next_month = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
+              if (this.isInDateRange(new Date(cur_trip.start_date), new Date(cur_trip.end_date), today, next_month)) {
+                  trips.push(<Card className="main-card col-12">
+                      <CardContent>
+                          <SavedTrip key={index} data={this.state.trips[index].trip}/>
+                      </CardContent>
+                  </Card>);
+              }
+          });
+          return trips;
+      } else {
+          return <Card className="main-card col-12">
+              <CardContent>
+                  <span>No saved trips.</span>
+              </CardContent>
+          </Card>;
+      }
+  }
+
+    isInDateRange(start_date, end_date, today, next_week) {
+      console.log(start_date + " | " + end_date + " | " + today + " | " + next_week);
+        return (start_date >= today && start_date <= next_week) ||
+            (today >= start_date && today <= end_date);
+    }
 
   render() {
     return (
       <div className="container-fluid">
         <div className="row main">
           <div className="col-md-4">
-            <Card className="main-card">
-              <Typography type="title" className="title">
-                Upcoming Trips
-              </Typography>
-              <CardContent>
-              </CardContent>
-            </Card>
+            <h2>Upcoming Trips</h2>
+              {this.renderUpcomingTrips()}
           </div>
           <div className="col-md-4">
-            <div className="row">
-                <Card className="main-card col-12">
-                    <Typography type="title" className="title">
-                        Saved Trips
-                    </Typography>
-                </Card>
-                {this.actuallyRenderTrips()}
-            </div>
+              <h2>Saved Trips</h2>
+              {this.actuallyRenderTrips()}
           </div>
           <div className="col-md-4">
             <NearbyDeals/>

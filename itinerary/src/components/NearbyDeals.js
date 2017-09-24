@@ -63,10 +63,8 @@ class NearbyDeals extends Component {
 
     return (
       <div className="wrapper">
+        <h2>Deals in your area</h2>
         <Card className="main-card">
-          <Typography type="title" className="title">
-            Deals in your area
-          </Typography>
             {map}
           <CardContent>
 

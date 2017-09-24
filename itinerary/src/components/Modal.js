@@ -99,7 +99,7 @@ class Modal extends Component {
         </Tooltip>
         <ReactModal
           isOpen={this.state.showModal}>
-          <IconButton color="primary" aria-label="Add to shopping cart" onClick={() => this.handleCloseModal()}>
+          <IconButton color="primary" onClick={() => this.handleCloseModal()}>
             <NavigateBefore />
           </IconButton>
           {this.state.currentView}

@@ -12,7 +12,54 @@ import firebase from 'firebase';
 
 import axios from 'axios';
 
+import { compose, withProps, withState, withHandlers } from "recompose";
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow,
+} from "react-google-maps";
+
+
 require("./NearbyDeals.css");
+
+
+const MapWithControlledZoom = compose(
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `400px` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
+  }),
+  withState('zoom', 'onZoomChange', 8),
+  withHandlers(() => {
+    const refs = {
+      map: undefined,
+    }
+
+    return {
+      onMapMounted: () => ref => {
+        refs.map = ref
+      },
+      onZoomChanged: ({ onZoomChange }) => () => {
+        onZoomChange(refs.map.getZoom())
+      }
+    }
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props =>
+  <GoogleMap
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    zoom={props.zoom}
+    ref={props.onMapMounted}
+    center={props.center}
+    onZoomChanged={props.onZoomChanged}
+  >
+
+  </GoogleMap>
+);
 
 class NearbyDeals extends Component {
 
@@ -38,14 +85,6 @@ class NearbyDeals extends Component {
       };
     });
 
-    axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/output?key=AIzaSyALHlOruFkkmf3LUnbjRut_ORZmpkS2tsM')
-      .then(response => {
-
-      })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
-
   }
 
   render() {
@@ -54,11 +93,10 @@ class NearbyDeals extends Component {
 
     if (this.state.location != null){
       map =
-        <CardMedia
-          className="map-img"
-          image={"https://maps.googleapis.com/maps/api/staticmap?center=" + this.state.location.latitude + "," + this.state.location.longitude + "&zoom=13&size=400x400&sensor=false"}
-          title="Contemplative Reptile"
-        />
+        <MapWithControlledZoom center={{
+          lat : this.state.location.latitude,
+          lng : this.state.location.longitude
+        }}></MapWithControlledZoom>
     }
 
     return (

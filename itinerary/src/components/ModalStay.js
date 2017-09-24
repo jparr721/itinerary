@@ -4,7 +4,36 @@ import React, { Component } from 'react';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
+import axios from 'axios';
+import firebase from 'firebase';
+
 class ModalStay extends Component {
+
+  findHotelsWrapper(location, radius){
+    //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=32.800870,-96.830803&radius=400&name=Sheraton&key=[key]
+
+
+
+    let promise = axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
+      + location.lat + "," + location.lng
+      + "&radius=" + radius
+      + "&name=Hotel"
+      + "&key=AIzaSyALHlOruFkkmf3LUnbjRut_ORZmpkS2tsM");
+
+    promise.then((res) => {
+      console.log(res);
+    });
+
+
+  }
+
+  findHotels(){
+    var user = firebase.auth().currentUser;
+
+    if (user){
+    }
+  }
+
   render() {
     return (
       <div>

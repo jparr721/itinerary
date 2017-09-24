@@ -100,6 +100,16 @@ class ModalSearch extends Component {
       }, (err) => {
           console.log(err);
       });
+
+      this.request.post('temp/create', {
+          temp_id: user.uid,
+          trip_id: user.uid + trip_name,
+      }).then((data) => {
+          // data was posted to the server
+          console.log(data);
+      }, (err) => {
+          console.log(err);
+      });
     }
   }
 

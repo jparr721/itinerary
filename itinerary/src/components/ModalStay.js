@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Request from '../util/request';
+
 // Material UI
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
@@ -14,8 +16,8 @@ class ModalStay extends Component {
 
 
 
-    let promise = axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
-      + location.lat + "," + location.lng
+    let promise = axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+      + "?location=" + location.lat + "," + location.lng
       + "&radius=" + radius
       + "&name=Hotel"
       + "&key=AIzaSyALHlOruFkkmf3LUnbjRut_ORZmpkS2tsM");
@@ -31,6 +33,9 @@ class ModalStay extends Component {
     var user = firebase.auth().currentUser;
 
     if (user){
+      Request.get("trip/" + user.uid).then((res) => {
+        
+      });
     }
   }
 

@@ -64,10 +64,10 @@ class NearbyDeals extends Component {
     return (
       <div className="wrapper">
         <Card className="main-card">
-          {map}
           <Typography type="title" className="title">
             Deals in your area
           </Typography>
+            {map}
           <CardContent>
 
           </CardContent>

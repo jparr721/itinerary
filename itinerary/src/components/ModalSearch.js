@@ -4,7 +4,6 @@ import geocoder from 'geocoder';
 
 import firebase from 'firebase';
 
-import { Slot } from 'react-slot'
 
 // Material UI
 import TextField from 'material-ui/TextField';

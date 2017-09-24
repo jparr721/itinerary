@@ -11,10 +11,17 @@ import firebase from 'firebase';
 
 class ModalStay extends Component {
 
+  constructor(){
+    super();
+  }
+
+  componentDidMount(){
+    this.request = new Request();
+    this.findHotels();
+  }
+
   findHotelsWrapper(location, radius){
     //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=32.800870,-96.830803&radius=400&name=Sheraton&key=[key]
-
-
 
     let promise = axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json"
       + "?location=" + location.lat + "," + location.lng
@@ -33,8 +40,19 @@ class ModalStay extends Component {
     var user = firebase.auth().currentUser;
 
     if (user){
-      Request.get("trip/" + user.uid).then((res) => {
-        
+      this.request.get("temp/" + user.uid).then((res) => {
+
+        console.log(res);
+        console.log(res.data.data.trip_id);
+
+        this.request.get('users/' + user.uid + '/trips/' + res.data.data.trip_id).then((res) => {
+          console.log(res);
+
+            //res.data.dest
+
+          this.findHotelsWrapper(res.data.dest, 150);
+        });
+
       });
     }
   }

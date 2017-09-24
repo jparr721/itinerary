@@ -88,7 +88,7 @@ class ModalSearch extends Component {
       console.log("lat " + this.state.map_center.lat);
       console.log("lng " + this.state.map_center.lng);
       console.log("FULL TRIP NAME: " + user.uid + trip_name);
-      this.request.post('trip/create/', {
+      this.request.post('trip/create', {
           lat: this.state.selected_location.lat,
           lng: this.state.selected_location.lng,
           trip_id: user.uid + trip_name,
@@ -96,6 +96,7 @@ class ModalSearch extends Component {
           name: trip_name
       }).then((data) => {
           // data was posted to the server
+          alert("done");
           console.log(data);
       }, (err) => {
           console.log(err);

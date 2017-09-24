@@ -13,7 +13,7 @@ class SavedTrip extends Component {
         return (
             <div className="row">
                 <div className="trip-bg col-12">
-                    <img className="trip-image" src={this.props.data.image_url} />
+                    <a><img className="trip-image" src={this.props.data.image_url} /></a>
                 </div>
                 <div className="col-12">
                     <h3>{this.props.data.name} <small><span>${this.props.data.price}</span></small></h3>

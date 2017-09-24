@@ -9,8 +9,37 @@
 }
 
 .stepper {
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
 }
+
+.ReactModal__Content > .container-fluid > .row > .col-sm-4 {
+  min-width: 100%;
+}
+
+@media (min-width: 575px) {
+
+}
+
+@media (min-width: 767px) {
+}
+
+@media (min-width: 991px) {
+  .ReactModal__Content > .container-fluid > .row > .col-sm-4 {
+    max-width: 100%;
+    min-width: 10%;
+  }
+  .stepper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (min-width: 1199px) {
+
+}
+

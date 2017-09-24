@@ -41,28 +41,19 @@ const MapWithControlledZoom = compose(
 )(props =>
   <GoogleMap
     defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    center = {props.center}
     zoom={props.zoom}
     ref={props.onMapMounted}
     onZoomChanged={props.onZoomChanged}
   >
-    <Marker
-      position={{ lat: -34.397, lng: 150.644 }}
-      onClick={props.onToggleOpen}
-    >
-      <InfoWindow onCloseClick={props.onToggleOpen}>
-        <div>
 
-          {" "}
-          Controlled zoom: {props.zoom}
-        </div>
-      </InfoWindow>
-    </Marker>
   </GoogleMap>
 );
 
 class ModalSearch extends Component {
 
-  constuctor(){
+  constructor(){
+    super();
     this.state = {
       location : "",
       map_center: null
@@ -82,17 +73,29 @@ class ModalSearch extends Component {
   }
 
   mapSearch(input){
-    console.log(input);
+    //console.log(input);
 
-    geocoder.geocode(input, function ( err, data ) {
+    geocoder.geocode(input,  ( err, data ) => {
       // do something with data
-      console.log(data);
+      //console.log(data);
 
-      if (data.length) {
-        var location = data[0].geometry.location;
+      console.log(data.results["0"]);
+
+      if (data.results.length > 0) {
+        var geo_result = data.results["0"].geometry.location;
+
+        //console.log("Geo res: " +  data.results[0]);
+
+        //console.log("lat " + geo_result.lat);
+        //console.log("lng " + geo_result.lng);
+
+        this.setState({
+          map_center : geo_result
+        });
+
+        console.log("lat " + this.state.map_center.lat);
+        console.log("lng " + this.state.map_center.lng);
       }
-
-      console.log(location);
 
     });
   }
@@ -122,7 +125,10 @@ class ModalSearch extends Component {
               </form>
             </div>
             <div className="col-lg-8 map-container expand"> {/*AIzaSyDpZF4UlkJ1bIvg5sG29oyxWfR20fODMDI*/}
-              <MapWithControlledZoom  className="map expand">
+              <MapWithControlledZoom
+                zoom="18"
+                center={this.state.map_center}
+                className="map expand">
               </MapWithControlledZoom>
             </div>
           </div>

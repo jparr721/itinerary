@@ -26,10 +26,10 @@ class ModalSearch extends Component {
               />
             </h3>
           </form>
-        <iframe className="map"
+        {/* <iframe className="map"
           src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDpZF4UlkJ1bIvg5sG29oyxWfR20fODMDI
             &q=${this.state.location}`} allowFullScreen>
-        </iframe>
+        </iframe> */}
       </div>
     );
   };

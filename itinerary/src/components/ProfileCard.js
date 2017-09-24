@@ -1,7 +1,10 @@
-
 import React, { Component } from 'react';
+
+// Material UI
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
+import { FormControlLabel } from 'material-ui/Form';
+import Switch from 'material-ui/Switch';
 
 require('./ProfileCard.css');
 
@@ -14,12 +17,14 @@ class ProfileCard extends Component {
       username   : "Username",
       email      : "Email@Email.com",
       pictureURL : null,
+      locationActive: true,
     };
 
     this.setState({
       username   : this.props.username,
       email      : this.props.email,
       pictureURL : this.props.photoURL,
+      locationActive: true,
     });
   }
 
@@ -43,7 +48,15 @@ class ProfileCard extends Component {
         </div>
 
         <hr class="horizontal-rule"/>
-
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.state.locationActive}
+              onChange={(event, checked) => this.setState({ locationActive: checked })}
+            />
+          }
+          label="Enable Location Services?"
+        />
 
       </div>
     );

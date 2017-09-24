@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 // Common components
-import TransportModal from './common/TransportModal'
+import TransportModal from './common/TransportModal';
+import firebase from 'firebase';
 
 // Material UI
 import Card, { CardActions, CardContent } from 'material-ui/Card';

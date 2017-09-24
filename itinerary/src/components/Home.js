@@ -127,15 +127,15 @@ class Home extends Component {
     return (
       <div className="container-fluid">
         <div className="row main">
-          <div className="col-md-4">
+          <div className="col-md-4  animated fadeInLeft transport-card-header">
             <h2>Upcoming Trips</h2>
               {this.renderUpcomingTrips()}
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 animated fadeInLeft homepage-animations">
               <h2>Saved Trips</h2>
-              {this.actuallyRenderTrips()}
+            {this.actuallyRenderTrips()}
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 animated fadeInLeft transport-card-subtext">
             <NearbyDeals/>
           </div>
         </div>

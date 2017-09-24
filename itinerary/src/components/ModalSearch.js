@@ -4,7 +4,7 @@ import geocoder from 'geocoder';
 
 // Material UI
 import TextField from 'material-ui/TextField';
-
+import Request from '../util/request';
 import { compose, withProps, withState, withHandlers } from "recompose";
 import {
   withScriptjs,
@@ -58,6 +58,7 @@ class ModalSearch extends Component {
       location : "",
       map_center: null
     };
+    this.request = new Request();
   }
 
   componentDidMount(){
@@ -95,6 +96,18 @@ class ModalSearch extends Component {
 
         console.log("lat " + this.state.map_center.lat);
         console.log("lng " + this.state.map_center.lng);
+        this.request.post('trips/create/', {
+            lat: this.state.map_center.lat,
+            lot: this.state.map_center.lot,
+            trip_id: 'FIREBASE USER ID' + data.results["0"],
+            user_id: 'FIREBASE USER ID',
+            name: data.results["0"]
+        }).then((data) => {
+            // data was posted to the server
+            console.log(data);
+        }, (err) => {
+            console.log(err);
+        });
       }
 
     });

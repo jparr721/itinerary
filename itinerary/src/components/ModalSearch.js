@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 
 import geocoder from 'geocoder';
 
+import firebase from 'firebase';
+
+import { Slot } from 'react-slot'
+
 // Material UI
 import TextField from 'material-ui/TextField';
-
+import Request from '../util/request';
 import { compose, withProps, withState, withHandlers } from "recompose";
 import {
   withScriptjs,
@@ -44,8 +48,10 @@ const MapWithControlledZoom = compose(
     center = {props.center}
     zoom={props.zoom}
     ref={props.onMapMounted}
+    onClick={props.onClick}
     onZoomChanged={props.onZoomChanged}
   >
+    {props.singleMarker}
 
   </GoogleMap>
 );
@@ -56,8 +62,10 @@ class ModalSearch extends Component {
     super();
     this.state = {
       location : "",
-      map_center: null
+      map_center: null,
+      selected_location: null
     };
+    this.request = new Request();
   }
 
   componentDidMount(){
@@ -72,35 +80,56 @@ class ModalSearch extends Component {
     });
   }
 
+  saveToDB(trip_name){
+
+
+    var user = firebase.auth().currentUser;
+
+    if (user){
+      console.log("lat " + this.state.map_center.lat);
+      console.log("lng " + this.state.map_center.lng);
+      this.request.post('trip/create/', {
+          lat: this.state.selected_location.lat,
+          lot: this.state.selected_location.lot,
+          trip_id: user.uid + trip_name,
+          user_id: user.uid,
+          name: trip_name
+      }).then((data) => {
+          // data was posted to the server
+          console.log(data);
+      }, (err) => {
+          console.log(err);
+      });
+    }
+  }
+
   mapSearch(input){
     //console.log(input);
 
     geocoder.geocode(input,  ( err, data ) => {
-      // do something with data
-      //console.log(data);
-
       console.log(data.results["0"]);
 
       if (data.results.length > 0) {
         var geo_result = data.results["0"].geometry.location;
 
-        //console.log("Geo res: " +  data.results[0]);
-
-        //console.log("lat " + geo_result.lat);
-        //console.log("lng " + geo_result.lng);
-
         this.setState({
           map_center : geo_result
         });
-
-        console.log("lat " + this.state.map_center.lat);
-        console.log("lng " + this.state.map_center.lng);
       }
-
     });
   }
 
   render() {
+
+    let marker = null;
+
+    if (this.state.selected_location != null){
+      marker = <Marker slot position={{
+          lat: this.state.selected_location.lat,
+          lng: this.state.selected_location.lng
+        }}></Marker>
+    }
+
     return (
         <div className="container-fluid expand">
           <div className="row expand">
@@ -126,15 +155,30 @@ class ModalSearch extends Component {
             </div>
             <div className="col-lg-8 map-container expand"> {/*AIzaSyDpZF4UlkJ1bIvg5sG29oyxWfR20fODMDI*/}
               <MapWithControlledZoom
+                onClick={(e) => {
+                  console.log(e);
+
+                  this.setState({
+                    selected_location : {
+                      lat : e.latLng.lat(),
+                      lng : e.latLng.lng()
+                    }
+                  });
+
+                  this.saveToDB("fml");
+
+                  console.log(this.state.selected_location);
+                }}
+                singleMarker={marker}
                 zoom="18"
                 center={this.state.map_center}
                 className="map expand">
+
               </MapWithControlledZoom>
             </div>
           </div>
         </div>
-    );
-  };
+    )};
 }
 
 export default ModalSearch;

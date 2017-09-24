@@ -5,6 +5,8 @@ import TransportModal from './common/TransportModal'
 
 // Material UI
 import Card, { CardActions, CardContent } from 'material-ui/Card';
+import NavigateBefore from 'material-ui-icons/NavigateBefore';
+import IconButton from 'material-ui/IconButton';
 
 class ModalTravel extends Component {
   constructor() {
@@ -15,7 +17,10 @@ class ModalTravel extends Component {
       showTrainModal: false,
       showBusModal: false,
     };
-    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleOpenCarModal = this.handleOpenCarModal.bind(this);
+    this.handleOpenPlaneModal = this.handleOpenPlaneModal.bind(this);
+    this.handleOpenBusModal = this.handleOpenBusModal.bind(this);
+    this.handleOpenTrainModal = this.handleOpenTrainModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
@@ -51,7 +56,7 @@ class ModalTravel extends Component {
         <h1>How will you embark on your adventure?</h1>
       <div className="row text-center transport-options">
           <div className="col-3">
-            <Card className="selection-card" onClick = {() => this.handleOpenModal()}>
+            <Card className="selection-card" onClick = {() => this.handleOpenCarModal()}>
               <i className="fa fa-car fa-5x"></i>
               <h2>Car</h2>
             </Card>
@@ -76,7 +81,10 @@ class ModalTravel extends Component {
           </div>
         </div>
         <TransportModal
-          isOpen={this.state.showModal}>
+          isOpen={this.state.showCarModal}>
+            <IconButton color="primary" onClick={() => this.handleCloseModal()}>
+              <NavigateBefore />
+            </IconButton>
             <h1>Hello World</h1>
           </TransportModal>
       </div>

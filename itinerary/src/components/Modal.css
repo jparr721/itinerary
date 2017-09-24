@@ -4,6 +4,10 @@
   bottom: 16px;
 }
 
+.modal-root {
+  overflow-y: hidden;
+}
+
 .stepper {
   position: absolute;
   bottom: 0;

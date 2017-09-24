@@ -41,6 +41,7 @@ class Modal extends Component {
   }
 
   handleOpenModal () {
+    this.newEntry();
     this.setState({ showModal: true });
   }
 
@@ -61,6 +62,13 @@ class Modal extends Component {
       }));
     this.renderViews(this.state.activeStep - 1);
   };
+
+  newEntry = () => {
+    this.setState({
+      activeStep: 0,
+      currentView: <ModalSearch />
+    });
+  }
 
   renderViews(current_step) {
     switch(current_step) {

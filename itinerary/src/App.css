@@ -19,6 +19,13 @@ h2 {
   font-size: 34px;
 }
 
+p {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  color: #424242;
+  font-size: 18px;
+}
+
 footer {
   width: 30%;
   position: fixed;
@@ -89,6 +96,23 @@ footer {
   padding-top: 5%;
 }
 
+.transport-card-header {
+  -webkit-animation-duration: 1.25s;
+  -webkit-animation-delay: 0.25s;
+  -moz-animation-duration: 1.25s;
+  -moz-animation-delay: 0.25s;
+  animation-duration: 1.25s;
+  animation-delay: 0.25s;
+}
+
+.transport-card-subtext {
+  -webkit-animation-duration: 1.25s;
+  -webkit-animation-delay: 0.75s;
+  -moz-animation-duration: 1.25s;
+  -moz-animation-delay: 0.75s;
+  animation-duration: 1.25s;
+  animation-delay: 0.75s;
+}
 /** Header Component **/
 .header {
   width: 100%;

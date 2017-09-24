@@ -4,7 +4,6 @@ import geocoder from 'geocoder';
 
 import firebase from 'firebase';
 
-import { Slot } from 'react-slot'
 
 // Material UI
 import TextField from 'material-ui/TextField';
@@ -88,9 +87,10 @@ class ModalSearch extends Component {
     if (user){
       console.log("lat " + this.state.map_center.lat);
       console.log("lng " + this.state.map_center.lng);
+      console.log("FULL TRIP NAME: " + user.uid + trip_name);
       this.request.post('trip/create/', {
           lat: this.state.selected_location.lat,
-          lot: this.state.selected_location.lot,
+          lng: this.state.selected_location.lng,
           trip_id: user.uid + trip_name,
           user_id: user.uid,
           name: trip_name
